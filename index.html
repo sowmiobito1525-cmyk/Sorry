@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Kaleeswari ❤️</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  font-family:'Segoe UI',sans-serif;
+  overflow:hidden;
+}
+
+/* 3D Scene */
+.scene{
+  width:330px;
+  height:430px;
+  perspective:1000px;
+}
+
+.card{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform 1s;
+}
+
+.card.flip{
+  transform:rotateY(180deg);
+}
+
+.face{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:20px;
+  background:rgba(255,255,255,0.25);
+  backdrop-filter:blur(12px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  text-align:center;
+  color:white;
+}
+
+.back{
+  transform:rotateY(180deg);
+}
+
+button{
+  margin-top:15px;
+  padding:10px 20px;
+  border:none;
+  border-radius:25px;
+  background:#ff4e50;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+  font-weight:bold;
+}
+
+button:hover{
+  transform:scale(1.1);
+  background:#fc913a;
+}
+
+/* Cry Animation */
+.cry{
+  font-size:55px;
+  animation:shake 1s infinite;
+}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-6px);}
+  50%{transform:translateX(6px);}
+  75%{transform:translateX(-6px);}
+}
+
+.tear{
+  position:absolute;
+  width:6px;
+  height:15px;
+  background:skyblue;
+  border-radius:50%;
+  top:120px;
+  animation:drop 2s infinite;
+}
+
+@keyframes drop{
+  0%{top:120px;opacity:1;}
+  100%{top:210px;opacity:0;}
+}
+
+/* Hearts */
+.heart{
+  position:absolute;
+  font-size:22px;
+  animation:float 4s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh);opacity:0;}
+  50%{opacity:1;}
+  100%{transform:translateY(-10vh);opacity:0;}
+}
+
+/* Confetti */
+.confetti{
+  position:absolute;
+  width:8px;
+  height:8px;
+  top:0;
+  animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+  to{transform:translateY(100vh) rotate(720deg);opacity:0;}
+}
+
+/* Final Screen */
+.final-screen{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  text-align:center;
+  animation:fadeIn 2s forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+.name{
+  font-size:42px;
+  font-weight:bold;
+  color:#ff4e50;
+  text-shadow:0 0 10px #fff,0 0 20px #ff4e50,0 0 40px #ff7eb3;
+  animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px #fff,0 0 20px #ff4e50;}
+  to{text-shadow:0 0 25px #fff,0 0 50px #ff7eb3;}
+}
+
+.big-text{
+  font-size:26px;
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" loop>
+  <source src="aaruyire.mp3" type="audio/mpeg">
+</audio>
+
+<div class="scene">
+  <div class="card" id="card">
+
+    <!-- Cry Page -->
+    <div class="face front">
+      <div class="cry">🥺</div>
+      <div class="tear"></div>
+      <h2>Sorry dii Pondatii 💔</h2>
+      <p>
+        Naa romba thappa pesiten...  
+        Unna hurt panna enakku intention illa.  
+        Nee kovapadrathu correct dha.  
+        Please forgive me dii... ❤️
+      </p>
+      <button onclick="flipCard()">See My Heart 💌</button>
+    </div>
+
+    <!-- Surprise Page -->
+    <div class="face back">
+      <h2>Kaleeswari ❤️</h2>
+      <p>
+        "I may not be perfect,  
+        but my love for you is real,  
+        constant, and forever true.  
+        You are my peace, my happiness,  
+        and my forever."
+      </p>
+      <button onclick="celebrate()">I Forgive You ❤️</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function flipCard(){
+  document.getElementById("card").classList.add("flip");
+  document.getElementById("bgm").play(); // Song starts here
+}
+
+function celebrate(){
+
+  // Confetti Blast
+  for(let i=0;i<150;i++){
+    const conf=document.createElement("div");
+    conf.classList.add("confetti");
+    conf.style.left=Math.random()*100+"vw";
+    conf.style.background="hsl("+Math.random()*360+",100%,50%)";
+    document.body.appendChild(conf);
+    setTimeout(()=>conf.remove(),3000);
+  }
+
+  // Love Rain
+  setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),4000);
+  },300);
+
+  // Final Screen
+  const final=document.createElement("div");
+  final.classList.add("final-screen");
+  final.innerHTML=`
+    <div class="name">Kaleeswari ❤️</div>
+    <div class="big-text">She Forgave Me 🥹💖</div>
+    <div class="big-text">I Love You Forever</div>
+  `;
+  document.body.appendChild(final);
+}
+</script>
+
+</body>
+</html>
